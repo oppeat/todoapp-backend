@@ -12,15 +12,15 @@ app.use(bodyParser.json());
 var todos = [
   {
     id: '1001',
-    title: 'Node.js for Beginners'
+    title: 'Clear Tasks on JIRA'
   },
   {
     id: '1002',
-    title: 'React 101'
+    title: 'Learn how to use React with Redux'
   },
   {
     id: '1003',
-    title: 'Getting started with MongoDB'
+    title: 'Daily Meetup'
   }
 ]
 
@@ -42,13 +42,10 @@ app.post('/todos', (req, res) => {
 })
 app.put('/todos/:id', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  const { id } = req.params;
-  console.log(id);
-  var index = todos.map(function(e) { return e.id; }).indexOf(id);
-  console.log(index)
-  console.log(req.body)
+  const { id } = req.params
+  var index = todos.map(function(e) { return e.id; }).indexOf(id)
+  todos[index] = req.body
   console.log(todos)
-  todos[index] = req.body;
 
   res.json({ id })
 })
